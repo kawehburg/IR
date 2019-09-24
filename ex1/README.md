@@ -27,11 +27,15 @@
 
 输入的表达式和数据源 
 
-``print(cp('a && ( b || ( ! c ) )', {'a': [1, 2, 3], 'b': [3, 4, 5], 'c': [2, 3, 4]}))``
+```python
+print(cp('a && ( b || ( ! c ) )', {'a': [1, 2, 3], 'b': [3, 4, 5], 'c': [2, 3, 4]}))
+```
 
 output：
 
-``[1, 3]``
+```
+[1, 3]
+```
 
 算法可以适应各种组合和长度的合法的表达式，从左向右依次运算，(…)递归处理 ，表达式中的数据存在source中
 
@@ -39,27 +43,39 @@ output：
 
 1) 重整为用一个空格分开的布尔运算符和查询索引的重整表达式，对！添加() 
 
-``$ a&& b ||(! c)``
+```python
+$ a&& b ||(! c)
+```
 
 output:
 
-``a && b || ( ( ! C ) )``
+```python
+a && b || ( ( ! C ) )
+```
 
 2) 对连续的布尔运算基于运算符优先级进行重排以优化查询效率，&&具有高于||的优先级
 
-``a||b&&(c||!(D&&e)&&F)``
+```python
+a||b&&(c||!(D&&e)&&F)
+```
 
 output:
 
-``a && ( c && f || ( ! ( d && e ) ) ) || b``
+```python
+a && ( c && f || ( ! ( d && e ) ) ) || b
+```
 
 3)  一个更复杂的表达式，重整后去除了<…> ，其中<...>为定义输出次序运算符
 
-``is{||((!ab ||askm) && < lm>) &&(s{ab && cc)``
+```python
+is{||((!ab ||askm) && < lm>) &&(s{ab && cc)
+```
 
 output:
 
-``is{ && ( s{ab && cc ) || ( ( ( ! ab ) || askm ) && lm )``
+```python
+is{ && ( s{ab && cc ) || ( ( ( ! ab ) || askm ) && lm )
+```
 
 4) 如果表达式中两个查询词间无运算符默认为上一运算符，初始运算符为and 
 
@@ -67,31 +83,33 @@ output:
 
 对于每个查询词通过索引表获得索引结果 
 
-``$ hello world``
+```python
+$ hello world
+```
 
 output:
 
-``[optimize] hello world``
-
-``[source]``
-
-``hello : [1045, 4015, 5185, ...]``
-
-``world : [10, 49, 89, ...]``
+```
+[optimize] hello world
+[source]
+hello : [1045, 4015, 5185, ...]
+world : [10, 49, 89, ...]
+```
 
 其中对于每个词的检索通过词中字母所有字母组合 and 得到 如 wor{ld = wo && or && r{ && {l && ld，查询获得词序列，在通过词检索text id并用or运算得到结果
 
-``$ {hello{ wor{ld``
+```python
+$ {hello{ wor{ld
+```
 
 output:
 
-``[optimize] {hello{ wor{ld``
-
-``[source]``
-
-``{hello{ : [1045, 5185, 5550, ...]``
-
-``wor{ld : []``
+```
+[optimize] {hello{ wor{ld
+[source]
+{hello{ : [1045, 5185, 5550, ...]
+wor{ld : []
+```
 
 后续表达式和数据源一起进入布尔运算函数 
 
@@ -99,29 +117,35 @@ output:
 
 - 通过上述步骤获得查询结果，显示 text 和 id 
 
-``$ {hello{ {world{``
+```python
+$ {hello{ {world{
+```
 
 output:
 
-``[optimize] {hello{ {world{ ``
-``Find out about 1 results``
-``  15114 Hello World, Cornell scientists 3D print ears with help from rat tails and cow ears:   Science! A t... http://t.co/eRZyjXVkTP Thank You!``
-``Find out about 1 results``
+```
+[optimize] {hello{ {world{ 
+Find out about 1 results
+  15114 Hello World, Cornell scientists 3D print ears with help from rat tails and cow ears:   Science! A t... http://t.co/eRZyjXVkTP Thank You!
+Find out about 1 results
+```
 
 - <…>中的字符串出现的次数作为排序依据，对检索结果按降序排列
 
-``$ <love>``
+```python
+$ <love>
+```
 
 output:
 
-``[optimize] love ``
-``Find out about 386 results``
-``  12323 \u266a I, I love you like John loves Sherlock! I, I love you like John loves Sherlock! And I keep hitting re-peat-peat-peat-peat-peat-peat! \u266b``
-``  9916 @kylieminogue #loveisloveislove!!  Equal marriage UK Yes Vote. Oh Happy Day :-)``
-
-``   ...``
-
-``Find out about 386 results``
+```
+[optimize] love 
+Find out about 386 results
+  12323 \u266a I, I love you like John loves Sherlock! I, I love you like John loves Sherlock! And I keep hitting re-peat-peat-peat-peat-peat-peat! \u266b
+  9916 @kylieminogue #loveisloveislove!!  Equal marriage UK Yes Vote. Oh Happy Day :-)
+   ...
+Find out about 386 results
+```
 
 - <…>可以写在表达式外面 
 
@@ -129,20 +153,21 @@ output:
 
 output:
 
-``[optimize] weasley && birthday 
+```
+[optimize] weasley && birthday 
 Find out about 66 results
   16792 It's Ron Weasley's birthday! The ginger who vomited slugs out from his mouth' happy birthday Ron! #RonWeasleyBirthday
-  16819 #HappyBirthdayRonWeasley mumpung lgi ultah ron.. Gimna kalo admin kasih fact ron?``
-
-``  ...``
-
-``Find out about 66 results``
+  16819 #HappyBirthdayRonWeasley mumpung lgi ultah ron.. Gimna kalo admin kasih fact ron?
+  ...
+Find out about 66 results
+```
 
 ### 8. 交互
 
 在$输入表达式查询直到查询为空退出 
 
-``$ Hubble oldest star
+```
+$ Hubble oldest star
 [optimize] hubble oldest star 
 Find out about 5 results
   19231 Hubble telescope dates oldest star, 'Methuselah', at 14.5 billion years old Hubble telescope dates oldest ... http://t.co/dw9KBCcBM1
@@ -152,7 +177,8 @@ Find out about 5 results
   19715 ''Hubble Finds Birth Certificate of Oldest Known Star'' image: http://t.co/QNvfLVKMwW via #NASA_APP
 Find out about 5 results``
 
-``$ ``
+$ 
+```
 
 ## 实验结论
 
