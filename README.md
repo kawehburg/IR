@@ -1,6 +1,6 @@
 # 信息检索与数据挖掘
 
-## Homework1: Inverted index and Boolean Retrieval Model
+## [Homework1: Inverted index and Boolean Retrieval Model](https://github.com/kawehburg/IR/tree/master/ex1)
 
 ### 任务： 
 
@@ -14,4 +14,3 @@
 ### 注意：
 
 -  对于tweets与queries使用相同的预处理
-
