@@ -44,7 +44,8 @@ output：
 
 ### 5. 表达式重整 
 
-1) 重整为用一个空格分开的布尔运算符和查询索引的重整表达式，对！添加() 
+- 重整为用一个空格分开的布尔运算符和查询索引的重整表达式，对！添加() 
+
 
 ```
 $ a&& b ||(! c)
@@ -56,7 +57,8 @@ output:
 a && b || ( ( ! C ) )
 ```
 
-2) 对连续的布尔运算基于运算符优先级进行重排以优化查询效率，&&具有高于||的优先级
+- 对连续的布尔运算基于运算符优先级进行重排以优化查询效率，&&具有高于||的优先级
+
 
 ```
 a||b&&(c||!(D&&e)&&F)
@@ -68,7 +70,8 @@ output:
 a && ( c && f || ( ! ( d && e ) ) ) || b
 ```
 
-3)  一个更复杂的表达式，重整后去除了<…> ，其中<...>为定义输出次序运算符
+- 一个更复杂的表达式，重整后去除了<…> ，其中<...>为定义输出次序运算符
+
 
 ```
 is{||((!ab ||askm) && < lm>) &&(s{ab && cc)
@@ -80,7 +83,8 @@ output:
 is{ && ( s{ab && cc ) || ( ( ( ! ab ) || askm ) && lm )
 ```
 
-4) 如果表达式中两个查询词间无运算符默认为上一运算符，初始运算符为and 
+- 如果表达式中两个查询词间无运算符默认为上一运算符，初始运算符为and 
+
 
 ### 6. 从词片段到 text，得到数据源 
 
@@ -190,6 +194,19 @@ $
 
 
 通过实验学习了文档倒排索引和布尔查询，使用 python 实现了一个支持复杂表达式 布尔检索和词片段查询的信息检索系统，经测试对各种查询要求具有较高的查询效率，对用户输入有较好的鲁棒性，并进行了运算次序优化。
+
+```
+$ is{||((!ab ||askm) && < lm>) &&(s{ab && cc)
+
+[optimize] is{ && ( s{ab && cc ) || ( ( ( ! ab ) || askm ) && lm ) 
+Find out about 758 results
+  21393 Download Sherlock Holmes: The Classic BBC Series Starring Douglas Wilmer The Film Online\n\nSherlock Holmes: The http://t.co/z28imzN1oQ
+  111 \u2018The King\u2019s Speech\u2019 is top film at producer awards: \u201cThe King\u2019s Speech\u201d claimed the crown for best film at the P... http://bit.ly/eV6RLM
+  ...
+Find out about 758 results
+
+$ 
+```
 
 
 
