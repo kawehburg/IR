@@ -27,7 +27,7 @@
 
 输入的表达式和数据源 
 
-```python
+```
 print(cp('a && ( b || ( ! c ) )', {'a': [1, 2, 3], 'b': [3, 4, 5], 'c': [2, 3, 4]}))
 ```
 
@@ -43,37 +43,37 @@ output：
 
 1) 重整为用一个空格分开的布尔运算符和查询索引的重整表达式，对！添加() 
 
-```python
+```
 $ a&& b ||(! c)
 ```
 
 output:
 
-```python
+```
 a && b || ( ( ! C ) )
 ```
 
 2) 对连续的布尔运算基于运算符优先级进行重排以优化查询效率，&&具有高于||的优先级
 
-```python
+```
 a||b&&(c||!(D&&e)&&F)
 ```
 
 output:
 
-```python
+```
 a && ( c && f || ( ! ( d && e ) ) ) || b
 ```
 
 3)  一个更复杂的表达式，重整后去除了<…> ，其中<...>为定义输出次序运算符
 
-```python
+```
 is{||((!ab ||askm) && < lm>) &&(s{ab && cc)
 ```
 
 output:
 
-```python
+```
 is{ && ( s{ab && cc ) || ( ( ( ! ab ) || askm ) && lm )
 ```
 
@@ -83,7 +83,7 @@ is{ && ( s{ab && cc ) || ( ( ( ! ab ) || askm ) && lm )
 
 对于每个查询词通过索引表获得索引结果 
 
-```python
+```
 $ hello world
 ```
 
@@ -98,7 +98,7 @@ world : [10, 49, 89, ...]
 
 其中对于每个词的检索通过词中字母所有字母组合 and 得到 如 wor{ld = wo && or && r{ && {l && ld，查询获得词序列，在通过词检索text id并用or运算得到结果
 
-```python
+```
 $ {hello{ wor{ld
 ```
 
@@ -117,7 +117,7 @@ wor{ld : []
 
 - 通过上述步骤获得查询结果，显示 text 和 id 
 
-```python
+```
 $ {hello{ {world{
 ```
 
@@ -132,7 +132,7 @@ Find out about 1 results
 
 - <…>中的字符串出现的次数作为排序依据，对检索结果按降序排列
 
-```python
+```
 $ <love>
 ```
 
@@ -149,7 +149,9 @@ Find out about 386 results
 
 - <…>可以写在表达式外面 
 
-``$ weasley && birthday <ron>``
+```
+$ weasley && birthday <ron>
+```
 
 output:
 
