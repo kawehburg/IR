@@ -1,6 +1,6 @@
 import ex1.load_data as data
 import ex1.op_compile as op
-from ex1.boolop import _and, _or
+from ex1.boolop import ana
 
 OPERATOR = {'(', ')', '&&', '||', '!', '^', '<', '>'}
 RANK = {'&&': 1, '||': 2, '!': 0, '^': 1, '_': -1}
@@ -11,10 +11,10 @@ def org(seq):
     if len(seq) == 1:
         return letter.get(seq, [])
     for sp in range(len(seq) - 1):
-        cur = _and(cur, index[ord(seq[sp]) - 97][ord(seq[sp + 1]) - 97])
+        cur = ana(cur, index[ord(seq[sp]) - 97][ord(seq[sp + 1]) - 97], '&&')
     text_list = []
     for item in cur:
-        text_list = _or(text_list, vocab_index[vocab[item]])
+        text_list = ana(text_list, vocab_index[vocab[item]], '||')
     return text_list
 
 

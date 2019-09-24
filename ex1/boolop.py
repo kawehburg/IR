@@ -1,3 +1,14 @@
+def ana(seq1, seq2, op, max_len=27799):
+    if op == '&&':
+        return _and(seq1, seq2)
+    if op == '||':
+        return _or(seq1, seq2)
+    if op == '!':
+        return _not(seq2, max_len)
+    if op == '^':
+        return _xor(seq1, seq2)
+    return seq1
+
 def _and(seq1, seq2):
     flag1 = 0
     flag2 = 0
