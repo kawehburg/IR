@@ -1,5 +1,8 @@
 # Homework1: Inverted index and Boolean Retrieval Model
 
+- [实验报告](https://github.com/kawehburg/IR/blob/master/ex1/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A.pdf)
+- [DATA](https://github.com/kawehburg/IR/blob/master/ex1/tweets2.txt)
+
 ## 实验内容
 
 1. 建立词到文档的索引表：遍历数据集，对每个 text 以空格分词，用 set 建词典， 用 dict 建词到 text id 的映射。同时建立字母到 text 的索引。 
