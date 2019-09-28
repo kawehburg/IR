@@ -15,7 +15,7 @@
 
 - 对于tweets与queries使用相同的预处理
 
-## Homework2: Ranked retrieval [model](https://github.com/kawehburg/IR/tree/master/ex2)
+## [Homework2: Ranked retrieval model](https://github.com/kawehburg/IR/tree/master/ex2)
 
 ### 任务：
 
