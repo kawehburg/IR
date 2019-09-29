@@ -39,17 +39,17 @@
 对于[列表](https://nlp.stanford.edu/IR-book/html/htmledition/document-and-query-weighting-schemes-1.html)中的各种计算weight方法，对应python代码：
 
 ```
-    def smart_notation(name):
-        collect1 = {'n': lambda x, y: x,
-                    'a': lambda x, y: 0.5 + 0.5 * x / max(y),
-                    'b': lambda x, y: 1 if x > 0 else 0,
-                    'L': lambda x, y: (1 + np.log(x)) / (1 + np.log(np.average(y))) if x != 0 else 0,
-                    'l': lambda x, y: 1 + np.log(x) if x != 0 else 0}
-        collect2 = {'t': lambda x, y: np.log(y / x),
-                    'p': lambda x, y: max(0, np.log((y - x) / x)),
-                    'n': lambda x, y: 1}
-        collect3 = {'n': lambda x: 1,
-                    'c': lambda x: 1 / sum([i ** 2 for i in x] + [0.001]) ** 0.5}
+def smart_notation(name):
+    collect1 = {'n': lambda x, y: x,
+                'a': lambda x, y: 0.5 + 0.5 * x / max(y),
+                'b': lambda x, y: 1 if x > 0 else 0,
+                'L': lambda x, y: (1 + np.log(x)) / (1 + np.log(np.average(y))) if x != 0 else 0,
+                'l': lambda x, y: 1 + np.log(x) if x != 0 else 0}
+    collect2 = {'t': lambda x, y: np.log(y / x) if x != 0 else 0,
+                'p': lambda x, y: max(0, np.log((y - x) / x)) if x != 0 else 0,
+                'n': lambda x, y: 1}
+    collect3 = {'n': lambda x: 1,
+                'c': lambda x: 1 / sum([i ** 2 for i in x] + [0.001]) ** 0.5}
 ```
 
 ### 4. 获得排名元素的方法
