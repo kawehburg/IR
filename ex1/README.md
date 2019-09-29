@@ -2,6 +2,7 @@
 
 - [实验报告](https://github.com/kawehburg/IR/blob/master/ex1/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A.pdf)
 - [DATA](https://github.com/kawehburg/IR/blob/master/ex1/tweets2.txt)
+- Homework1更新的代码封装到了irmodel里
 
 ## 实验内容
 
