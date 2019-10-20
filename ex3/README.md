@@ -127,4 +127,4 @@ MRR = 0.05923067951895832
 
 可视化代码在[visualization.py](https://github.com/kawehburg/IR/blob/master/ex3/visualization.py)
 
-实验数据在
+实验数据在[log.txt](https://github.com/kawehburg/IR/blob/master/ex3/log.txt)
