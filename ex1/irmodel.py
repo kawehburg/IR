@@ -85,9 +85,9 @@ class IR:
             for i, line in enumerate(f):
                 ss = re.sub(' +', ' ', re.sub('[^a-zA-Z]', ' ', line.split('"')[9])).lower().strip()
                 if len(ss) < 1:
-                    pass
+                    continue
                 if ss in set_text:
-                    pass
+                    continue
                 set_text.add(ss)
                 text.append(ss)
                 raw_text.append(line.split('"')[9])
@@ -237,14 +237,14 @@ class IR:
         seq = seq.lower().strip()
         return seq
 
-    def match(self, exp):
+    def match(self, exp, report=print):
         exp = self.add_space(exp)
         exp = self.reg(exp)
         exp, regular = self.get_regular(exp)
         exp = self.optimize(exp)
-        print('[optimize]', exp)
+        report('[optimize]', exp)
         if regular is not None and len(regular) != 0:
-            print('[rank]', regular)
+            report('[rank]', regular)
         exp = self.reg(exp)
         source = {}
         for item in exp:

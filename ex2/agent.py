@@ -45,7 +45,7 @@ class Agent(IR):
                 tf[-1][item] += 1
         return tf
 
-    def match(self, exp):
+    def match(self, exp, report=print):
         if '.' in exp:
             smart = exp.split('.')
             try:
@@ -58,7 +58,7 @@ class Agent(IR):
             self.k = int(exp.split('=')[1])
             return []
         else:
-            return super().match(exp)
+            return super().match(exp, report=report)
 
     def get_regular(self, exp):
         regular = ''
