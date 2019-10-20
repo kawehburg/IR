@@ -68,23 +68,24 @@
 
 Parameters：
 
-smart：str，输入smart nota表达式
+- smart：str，输入smart nota表达式
 
-file：str，检索结果输出文件，如果是None则会以smart和k命名
+- file：str，检索结果输出文件，如果是None则会以smart和k命名
 
-agent：Eval，HW3中检索类，如果是None则会在函数中构建
+- agent：Eval，HW3中检索类，如果是None则会在函数中构建
 
-source：dict，包括所有query和tweetID映射，如果是None则会在函数中构建
+- source：dict，包括所有query和tweetID映射，如果是None则会在函数中构建
 
-k：int，查询前k个结果
+- k：int，查询前k个结果
 
-cache：bool，是否使用cache，使用cache时会判断file是否已存在，如果存在直接使用file作指标不在进行检索
+- cache：bool，是否使用cache，使用cache时会判断file是否已存在，如果存在直接使用file作指标不在进行检索
 
-output：stream，本次检索的指标的输出流，应用于`print(, file=output)`
+- output：stream，本次检索的指标的输出流，应用于`print(, file=output)`
+
 
 Return:
 
-`{'agent': agent, 'source': source}`
+- `{'agent': agent, 'source': source}`
 
 并定义batch函数对多个smart notation进行批处理
 
@@ -125,3 +126,5 @@ MRR = 0.05923067951895832
 可以看到在k=20时不同的smart notation组合在MAP，NDCG，MRR下的指标差异，其中smart notation表达式为“行.列”，热力图表示相对值而非绝对值。
 
 可视化代码在[visualization.py](https://github.com/kawehburg/IR/blob/master/ex3/visualization.py)
+
+实验数据在
