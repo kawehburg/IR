@@ -120,3 +120,5 @@ MRR = 0.05923067951895832
 
 使用matplotlib将smart notation组合的指标进行可视化结果如下
 
+![result](https://github.com/kawehburg/IR/blob/master/ex3/result.png)
+
