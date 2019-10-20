@@ -122,3 +122,6 @@ MRR = 0.05923067951895832
 
 ![result](https://github.com/kawehburg/IR/blob/master/ex3/result.png)
 
+可以看到在k=20时不同的smart notation组合在MAP，NDCG，MRR下的指标差异，其中smart notation表达式为“行.列”，热力图表示相对值而非绝对值。
+
+可视化代码在[visualization.py](https://github.com/kawehburg/IR/blob/master/ex3/visualization.py)
