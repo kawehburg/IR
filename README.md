@@ -39,3 +39,15 @@
 - Mean Average Precision (MAP)
 - Mean Reciprocal Rank (MRR)
 - Normalized Discounted Cumulative Gain (NDCG)
+
+## [Homework4: Clustering with sklearn]( https://github.com/kawehburg/IR/tree/master/ex4 )
+
+### 任务：
+
+测试sklearn中聚类算法在数据集上的聚类效果。
+
+**Dataset**：sklearn.datasets.load_digits & sklearn.datasets.fetch_20newsgroups
+
+**Method**：K-Means, Affinity propagation, Mean-shift, Spectral clustering, Ward hierachical clustering, Agglomerative, DBSCAN, Gaussian mixtures
+
+**Metrics**：metrics.normalized_mutual_info_score(labels_true, labels_pred), metrics.homogeneity_score(labels_true, labels_pred), metrics.completeness_score(labels_true, labels_pred)
