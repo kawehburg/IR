@@ -30,7 +30,7 @@
   - 在posting list中存储term在每个doc中的TF with pairs (docID, tf) 
 - 选做 • 支持所有的SMART Notations 
 
-## [Homework3：IR Evaluation](https://github.com/kawehburg/IR/tree/master/ex3)
+## [Homework3: IR Evaluation](https://github.com/kawehburg/IR/tree/master/ex3)
 
 ### 任务：
 
